@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historia de la Fotografía</title>
+    <link rel="icon" type="image/png" href="./assets/rocket.svg" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&family=Open+Sans&family=Parisienne&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      /*Rompecabezas*/
+  
+      #puzzle-container {
+            
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1px;
+        }
+
+        .puzzle-piece {
+            width: 233.3px;
+            height: 163.3px;
+            background-size: 700px 490px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="menu-toggle" id="menuToggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul class="menu" id="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="camaraOscura.html">Cámara Oscura (Siglo XVII)</a></li>
+          <li><a href="linternaMagica.html">Linterna Magica (Siglo XVII)</a></li>
+          <li><a href="laImitacion.html">El Deseo de la Imitación</a></li>
+          <li><a href="elCambioSocial.html">El Cambio Social</a></li>
+          <li><a href="elFisionotrazo.html">El Fisionotrazo (Siglo XVIII)</a></li>
+          <li><a href="laCamaraLucida.html">La Cámara Lucida (Siglo XIX)</a></li>
+          <li><a href="fijarUnaImagen.html">La Idea de Fijar Una Imagen (Siglo XIX)</a></li>
+          <li><a href="primeraFotografia.html">La Primera Fotografía (Siglo XIX)</a></li>
+          <li><a href="louisDaguerre.html">Louis Daguerre (Siglo XIX)</a></li>
+          <li><a href="daguerrotipo.html">El Daguerrotipo 1839</a></li>
+          <li><a href="calotipo.html">El Calotipo</a></li>
+          <li><a href="problemasDaguerrotipo.html">Problemas del Daguerrotipo</a></li>
+          <li><a href="colodion.html">El Colodión Humedo 1851</a></li>
+          <li><a href="miniColor.html">Miniaturización y Color</a></li>
+          <li><a href="estudiosFotograficos.html">Los Estudios Fotográficos</a></li>
+          <li><a href="elOficio.html">El Oficio/Profesión de Fotográfo (Siglo XX)</a></li>
+          <li><a href="usosDeLaFotografia.html">Usos de la Fotografía (Siglo XX)</a></li>
+          <li><a href="fotografiaModerna.html">Proceso Fotográfico "Gelatino-Bromuro"</a></li>
+          <li><a href="nitrato.html">Nitrato de Celulosa 1880"</a></li>
+          <li><a href="obturador.html">Obturador de Láminas Múltiples 1887"</a></li>
+          <li><a href="fotografiaM.html">Fotografía Moderna</a></li>
+
+      </ul>
+  </div>
+    <main>
+        <br><br>
+        <h1>El Deseo de la Imitación (siglo XVIII) </h1>
+        
+        <div id="puzzle-container"></div>
+        <br>
+        <div class="abrir-continuar">
+          <button class="button-abrir" id="btn-abrir-modal" style="visibility: hidden;">Abrir</button>
+          <a href="elCambioSocial.html" style="visibility: hidden;"><button class="button-continuar" id="continuar" >Continuar</button></a> 
+        </div>   
+        <dialog id="modal">
+          <h3>El Deseo de la Imitación</h3>
+          
+          <img src="img/panorama2.jpg" alt="Panorama" width="850" height="430">
+          
+          <p class="texto-justificado"> 
+            El deseo de la imitar la naturaleza se convierte en tentación permanente. El artista y empresario escocés <b>Robert Barker</b> planteó la idea de "Panorama" a finales del siglo XVIII, la cual consistía en una pintura circular o cilíndrica de gran tamaño que representaba una vista panorámica de una ciudad, paisaje, batalla u otro evento notable.
+            <br><br>Se puede calificar a la fotografía como una manera de suspender el gesto y detener el tiempo.
+          </p>
+          <button class="button-cerrar" id="btn-cerrar-modal">Cerrar</button>
+        </dialog> 
+    </main>
+    
+    <script>
+      const puzzleContainer = document.getElementById('puzzle-container');
+        const imageSrc = 'img/panorama.png'; // Reemplaza 'tu_imagen.jpg' con la URL de tu imagen.
+
+        // Tamaño de la cuadrícula
+        const gridSize = 3;
+
+        // Tamaño de cada pieza
+        const pieceSize = 233.3;
+        const pieceSize2 = 163.3;
+
+        // Dimensiones del rompecabezas completo
+        const puzzleWidth = gridSize * pieceSize;
+        const puzzleWidth2 = gridSize * pieceSize2;
+
+        puzzleContainer.style.width = `${puzzleWidth}px`;
+        puzzleContainer.style.height = `${puzzleWidth2}px`;
+
+        const pieces = [];
+
+        // Función para dividir la imagen en piezas
+        function createPuzzlePieces(imageSrc, gridSize) {
+            const image = new Image();
+            image.src = imageSrc;
+            image.onload = () => {
+                
+                for (let row = 0; row < gridSize; row++) {
+                    for (let col = 0; col < gridSize; col++) {
+                        const piece = document.createElement('div');
+                        piece.className = 'puzzle-piece';
+                        piece.style.backgroundImage = `url(${imageSrc})`;
+                        piece.style.backgroundPosition = `-${col * pieceSize}px -${row * pieceSize2}px`;
+                        piece.dataset.row = row;
+                        piece.dataset.col = col;
+                        piece.draggable = true;
+                        pieces.push(piece);
+                    }
+                }
+                
+                // Llamar a la función para revolver las piezas cuando sea necesario
+                shufflePuzzle();
+                pieces.forEach(piece => puzzleContainer.appendChild(piece));
+                addDragAndDrop();
+            };
+        }
+
+        // Función para agregar capacidad de arrastrar y soltar
+        function addDragAndDrop() {
+            let draggedPiece = null;
+
+            pieces.forEach(piece => {
+                piece.addEventListener('dragstart', () => {
+                    draggedPiece = piece;
+                });
+
+                piece.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+
+                piece.addEventListener('drop', (e) => {
+                    e.preventDefault();
+
+                    if (draggedPiece && draggedPiece !== piece) {
+                        // Intercambiar posiciones de las piezas
+                        const tempRow = piece.dataset.row;
+                        const tempCol = piece.dataset.col;
+                        piece.dataset.row = draggedPiece.dataset.row;
+                        piece.dataset.col = draggedPiece.dataset.col;
+                        draggedPiece.dataset.row = tempRow;
+                        draggedPiece.dataset.col = tempCol;
+
+                        // Actualizar la posición visual
+                        piece.style.backgroundPosition = `-${piece.dataset.col * pieceSize}px -${piece.dataset.row * pieceSize2}px`;
+                        draggedPiece.style.backgroundPosition = `-${draggedPiece.dataset.col * pieceSize}px -${draggedPiece.dataset.row * pieceSize2}px`;
+
+                        // Verificar si se ha resuelto el rompecabezas
+                        if (isPuzzleSolved()) {
+                            setTimeout(() => {
+                                
+                               modal.showModal();
+                              document.getElementById("btn-abrir-modal").style.visibility = "visible";
+                              document.getElementById("continuar").style.visibility = "visible";
+                            }, 800);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Función para verificar si el rompecabezas se ha resuelto
+        function isPuzzleSolved() {
+            return pieces.every(piece => {
+                const correctRow = parseInt(piece.dataset.row);
+                const correctCol = parseInt(piece.dataset.col);
+                return correctRow * gridSize + correctCol === pieces.indexOf(piece);
+            });
+        }
+
+        function shufflePuzzle() {
+            const shuffledPieces = [...pieces];
+
+            for (let i = shuffledPieces.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledPieces[i], shuffledPieces[j]] = [shuffledPieces[j], shuffledPieces[i]];
+            }
+
+            shuffledPieces.forEach((piece, index) => {
+                const row = Math.floor(index / gridSize);
+                const col = index % gridSize;
+
+                piece.dataset.row = row;
+                piece.dataset.col = col;
+                piece.style.backgroundPosition = `-${col * pieceSize}px -${row * pieceSize2}px`;
+            });
+        }
+
+
+
+        // Crear el rompecabezas
+        createPuzzlePieces(imageSrc, gridSize);
+
+        //Abrir modal (ventana)
+        const btnAbrirModal = document.querySelector("#btn-abrir-modal");
+        const btnCerrarModal = document.querySelector("#btn-cerrar-modal");
+        const modal = document.querySelector("#modal");
+
+        btnAbrirModal.addEventListener("click", ()=>{
+          modal.showModal();
+        })
+
+        btnCerrarModal.addEventListener("click", ()=>{
+          modal.close();
+        })
+
+         //Menu
+        const menuToggle = document.getElementById('menuToggle');
+          const menu = document.getElementById('menu');
+
+          menuToggle.addEventListener('click', () => {
+              menu.classList.toggle('active');
+        })
+    </script>
+  </body>
+</html>
